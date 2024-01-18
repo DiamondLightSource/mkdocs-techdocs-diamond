@@ -1,0 +1,24 @@
+{
+  "image": "docker.io/library/python:3.11",
+  
+  "customizations": {
+    "vscode": {
+      "settings": {
+          "python.defaultInterpreterPath": "/usr/local/bin/python"
+
+      },
+      "extensions": [
+        "ms-python.python",
+        "tamasfe.even-better-toml",
+        "redhat.vscode-yaml"
+      ]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2.1.0": {}
+  },
+  "runArgs": ["--security-opt=label=type:container_runtime_t"],
+  "workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind",
+  "workspaceFolder": "${localWorkspaceFolder}",
+  "onCreateCommand": "pip install -e '.[dev]'"
+}
