@@ -1,0 +1,111 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools_scm[toml]>=6.2", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mkdocs-techdocs-diamond"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+description = "One line description of your module"
+dependencies = [
+    "mkdocs",
+    "mkdocs-awesome-pages-plugin",
+    "mkdocs-include-markdown-plugin",
+    "mkdocs-material",
+    "mdx_truly_sane_lists",
+    "pymdown-extensions",
+    "pygments",
+]
+dynamic = ["version"]
+license.file = "LICENSE"
+readme = "README.md"
+requires-python = ">=3.11"
+
+[tool.setuptools]
+include-package-data = true
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "mypy",
+    "pipdeptree",
+    "pre-commit",
+    "pytest",
+    "pytest-cov",
+    "ruff",
+    "tox-direct",
+    "types-mock",
+]
+
+[tool.setuptools.package-data]
+mkdocs_defaults = ["src/mkdocs_techdocs_diamond/config.yml"]
+
+[project.entry-points."mkdocs.plugins"]
+techdocs-diamond = "mkdocs_techdocs_diamond:TechdocsDiamond"
+
+[project.urls]
+GitHub = "https://github.com/DiamondLightSource/mkdocs-techdocs-diamond"
+
+[[project.authors]]
+email = "garry.o'donnell@diamond.ac.uk"
+name = "Garry O'Donnell"
+
+[tool.setuptools_scm]
+write_to = "src/mkdocs_techdocs_diamond/_version.py"
+
+[tool.mypy]
+ignore_missing_imports = true # Ignore missing stubs in imported modules
+
+[tool.pytest.ini_options]
+# Run pytest with all our checkers, and don't spam us with massive tracebacks on error
+addopts = """
+    --tb=native -vv --doctest-modules --doctest-glob="*.rst"
+    """
+# https://iscinumpy.gitlab.io/post/bound-version-constraints/#watch-for-warnings
+filterwarnings = "error"
+# Doctest python code in src
+testpaths = "src"
+
+[tool.coverage.run]
+data_file = "/tmp/python3_pip_skeleton.coverage"
+
+[tool.coverage.paths]
+# Tests are run from installed location, map back to the src directory
+source = ["src", "**/site-packages/"]
+
+# tox must currently be configured via an embedded ini string
+# See: https://github.com/tox-dev/tox/issues/999
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+skipsdist=True
+
+[testenv:{pre-commit,mypy,pytest,docs}]
+# Don't create a virtualenv for the command, requires tox-direct plugin
+direct = True
+passenv = *
+allowlist_externals =
+    pytest
+    pre-commit
+    mypy
+commands =
+    pytest: pytest --cov=python3_pip_skeleton --cov-report term --cov-report xml:cov.xml {posargs}
+    mypy: mypy src {posargs}
+    pre-commit: pre-commit run --all-files {posargs}
+"""
+
+
+[tool.ruff]
+src = ["src"]
+line-length = 88
+select = [
+    "C4",   # flake8-comprehensions - https://beta.ruff.rs/docs/rules/#flake8-comprehensions-c4
+    "E",    # pycodestyle errors - https://beta.ruff.rs/docs/rules/#error-e
+    "F",    # pyflakes rules - https://beta.ruff.rs/docs/rules/#pyflakes-f
+    "W",    # pycodestyle warnings - https://beta.ruff.rs/docs/rules/#warning-w
+    "I001", # isort
+]
