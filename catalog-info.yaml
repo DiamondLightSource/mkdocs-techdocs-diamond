@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: mkdocs-techdocs-diamond
+  title: Mkdocs Techdocs Diamond
+  description: An Mkdocs plugin for configuring Diamond Techdocs sites
+spec:
+  type: library
+  lifecycle: experimental
+  system: developer-portal
+  owner: user:enu43627
