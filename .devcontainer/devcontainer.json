@@ -1,11 +1,10 @@
 {
-  "image": "docker.io/library/python:3.11",
-  
+  "image": "docker.io/library/python:3.10",
+
   "customizations": {
     "vscode": {
       "settings": {
-          "python.defaultInterpreterPath": "/usr/local/bin/python"
-
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
       },
       "extensions": [
         "ms-python.python",
