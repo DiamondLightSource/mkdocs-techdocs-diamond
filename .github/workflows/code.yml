@@ -14,7 +14,7 @@ jobs:
         python-version: ["3.10", "3.11", "3.12"]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4.1.2
 
       - name: Setup Python
         uses: actions/setup-python@v5.0.0
@@ -36,7 +36,7 @@ jobs:
         python-version: ["3.10", "3.11", "3.12"]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4.1.2
 
       - name: Setup Python
         uses: actions/setup-python@v5.0.0
@@ -56,7 +56,7 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4.1.2
 
       - name: Build sdist and wheel
         run: |
@@ -83,7 +83,7 @@ jobs:
     environment: release
     steps:
       - name: Download wheel and lockfiles
-        uses: actions/download-artifact@v4.1.2
+        uses: actions/download-artifact@v4.1.4
         with:
           name: dist
           path: dist
@@ -100,4 +100,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@v1.8.11
+        uses: pypa/gh-action-pypi-publish@v1.8.14
