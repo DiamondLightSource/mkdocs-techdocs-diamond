@@ -2,6 +2,7 @@ plugins:
   - search
   - include-markdown
   - awesome-pages
+  - mermaid2
 markdown_extensions:
   - admonition
   - mdx_truly_sane_lists
