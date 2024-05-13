@@ -14,7 +14,7 @@ classifiers = [
 ]
 description = "An Mkdocs plugin for configuring Diamond Techdocs sites"
 dependencies = [
-    "mkdocs<1.6.0",
+    "mkdocs<1.7.0",
     "mkdocs-awesome-pages-plugin",
     "mkdocs-include-markdown-plugin",
     "mkdocs-material",
