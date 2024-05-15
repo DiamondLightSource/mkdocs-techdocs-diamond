@@ -32,3 +32,8 @@ theme:
     - navigation.footer
     - navigation.indexes
     - content.action.edit
+  shortcuts:
+    - help: 191 # ?
+    - next: 78 # n
+    - previous: 80 # p
+    - search: 83 # s
